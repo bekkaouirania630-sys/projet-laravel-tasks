@@ -69,6 +69,8 @@ class taskcontroller extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'is_completed' => 'nullable|boolean',
+
         ]);
 
        $task->update($request->all());

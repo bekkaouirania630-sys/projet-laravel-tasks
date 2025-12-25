@@ -7,3 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 route::resource('tasks', taskcontroller::class);
+

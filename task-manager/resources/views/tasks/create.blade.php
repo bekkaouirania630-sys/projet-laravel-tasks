@@ -20,8 +20,8 @@
         <input type="text" name="title" class="w-full border px-3 py-2 rounded" value="{{ old('title') }}" required>
     </div>
     <div class="mb-4">
-        <label class="block font-semibold mb-1">Content</label>
-        <textarea name="content" class="w-full border px-3 py-2 rounded" rows="4" required>{{ old('content') }}</textarea>
+        <label class="block font-semibold mb-1">Description</label>
+        <textarea name="description" class="w-full border px-3 py-2 rounded" rows="4" >{{ old('description') }}</textarea>
     </div>
     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Task</button>
     <a href="{{ route('tasks.index') }}" class="bg-yellow-200 px-4 py-2  ml-2 text-gray-600 hover:underline">Cancel</a>

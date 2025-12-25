@@ -19,6 +19,7 @@
             <th class="py-2 px-4 text-left">Title</th>
             <th class="py-2 px-4 text-left">Content</th>
             <th class="py-2 px-4 text-left">Actions</th>
+            <th class="py-2 px-4 text-left">Done</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,7 @@
         <tr class="border-b">
             <td class="py-2 px-4">{{ $task->id }}</td>
             <td class="py-2 px-4">{{ $task->title }}</td>
-            <td class="py-2 px-4">{{ $task->content }}</td>
+            <td class="py-2 px-4">{{ $task->description }}</td>
             <td class="py-2 px-4 space-x-2">
                 <a href="{{ route('tasks.edit', $task->id) }}" class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500">Edit</a>
                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline">
@@ -35,10 +36,14 @@
                     <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600" onclick="return confirm('Are you sure?')">Delete</button>
                 </form>
             </td>
+            <td class="py-2 px-4 text-center">
+                {{ $task->is_completed ? 'Terminé' : 'En cours' }}
+            </td>
+            </td>
         </tr>
         @empty
         <tr>
-            <td colspan="4" class="text-center py-4">No tasks found</td>
+            <td colspan="5" class="text-center py-4">No tasks found</td>
         </tr>
         @endforelse
     </tbody>
