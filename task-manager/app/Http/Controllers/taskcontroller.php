@@ -63,20 +63,24 @@ class taskcontroller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $task = Task::findOrFail($id);
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'is_completed' => 'nullable|boolean',
+public function update(Request $request, $id)
+{
+    $task = Task::findOrFail($id);
 
-        ]);
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'nullable|string',
+    ]);
 
-       $task->update($request->all());
-        
-        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
-    }
+    $task->update([
+        'title' => $request->title,
+        'content' => $request->content,
+        'is_completed' => $request->has('is_completed') ? 1 : 0,
+    ]);
+
+    return redirect()->back()->with('success', 'Task updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -87,4 +91,12 @@ class taskcontroller extends Controller
         $task->delete();
         return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
+
+public function toggle(Task $task)
+{
+    $task->is_completed = !$task->is_completed;
+    $task->save();
+
+    return redirect()->back();
+}
 }
